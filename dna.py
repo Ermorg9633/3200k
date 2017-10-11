@@ -1,4 +1,4 @@
-__author__ = 'zmiller'
+__author__ = 'emorgan'
 
 
 def base_frequency(strand):
@@ -16,9 +16,14 @@ def base_frequency(strand):
     >>> base_frequency("acgt")
     'guanine (G):1, adenine (A):1, thymine (T):1, cytosine (C):1'
     """
-    pass
+    strand = strand.upper()
+    G = strand.count("G")
+    A = strand.count("A")
+    C = strand.count("C")
+    T = strand.count("T")
 
-
+    return 'guanine (G):{}, adenine (A):{}, thymine (T):{}, cytosine (C):{}'.format(G, A, T, C)
+    
 def reverse_strand(strand):
     """returns the reverse compliment of a strand
 
@@ -29,4 +34,22 @@ def reverse_strand(strand):
     'ACCGGGTTTT'
 
     """
-    pass
+    reverse = strand.upper()[::-1]
+    rc = []
+    for letter in reverse:
+        if letter == 'A':
+            rc.append('T')
+        if letter == 'T':
+            rc.append('A')
+        if letter == 'G':
+            rc.append('C')
+        if letter == 'C':
+            rc.append('G')       
+    
+
+    return "".join(rc)
+    
+    
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
